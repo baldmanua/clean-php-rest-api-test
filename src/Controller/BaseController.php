@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Response\Response;
+
 abstract class BaseController
 {
     protected function getRequestData(): array
@@ -9,12 +11,9 @@ abstract class BaseController
         return json_decode(file_get_contents('php://input'), true);
     }
 
-    protected function jsonResponse(array $response, int $statusCode = 200): void
+    protected function response(array $response, int $statusCode = 200): Response
     {
-        http_response_code($statusCode);
-        header('Content-Type: application/json');
-        echo json_encode($response);
-        exit;
+        return new Response($response, $statusCode);
     }
 
 }

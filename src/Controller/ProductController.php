@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Dto\ProductDTO;
 use App\Repository\ProductRepository;
+use App\Response\Response;
 use Doctrine\DBAL\Exception;
 use Symfony\Component\Validator\Validation;
 
@@ -16,7 +17,7 @@ class ProductController extends BaseController
     {
     }
 
-    public function create(): void
+    public function create(): Response
     {
         $data = $this->getRequestData();
 
@@ -25,28 +26,28 @@ class ProductController extends BaseController
         $errors = $validator->validate($dto);
 
         if (count($errors) > 0) {
-            $this->jsonResponse(['errors' => (string)$errors], 400);
+            return $this->response(['errors' => (string)$errors], 400);
         }
 
         $product = $this->repository->create($dto);
 
-        $this->jsonResponse(['product' => $product], 201);
+        return $this->response($product, 201);
     }
 
     /**
      * @throws Exception
      */
-    public function show(string $id)
+    public function show(string $id): Response
     {
         $product = $this->repository->find($id);
         if (!$product) {
-            $this->jsonResponse(['error' => 'Product not found'], 404);
+            return $this->response(['error' => 'Product not found'], 404);
         }
 
-        $this->jsonResponse(['product' => $product]);
+        return $this->response($product);
     }
 
-    public function update(string $id)
+    public function update(string $id): Response
     {
         $data = $this->getRequestData();
 
@@ -55,27 +56,27 @@ class ProductController extends BaseController
         $errors = $validator->validate($dto);
 
         if (count($errors) > 0) {
-            $this->jsonResponse(['errors' => (string)$errors], 400);
+            return $this->response(['errors' => (string)$errors], 400);
         }
 
         $updated = $this->repository->update($id, $dto);
 
         if (!$updated) {
-            $this->jsonResponse(['error' => 'Failed to update product'], 400);
+            return $this->response(['error' => 'Failed to update product'], 400);
         }
 
-        $this->jsonResponse(['product' => $updated]);
+        return $this->response($updated);
     }
 
-    public function delete(string $id)
+    public function delete(string $id): Response
     {
         $deleted = $this->repository->delete($id);
 
         if (!$deleted) {
-            $this->jsonResponse(['error' => 'Product not found'], 404);
+            return $this->response(['error' => 'Product not found'], 404);
         }
 
-        $this->jsonResponse(['success' => true]);
+        return $this->response(['success' => true]);
     }
 
     public function list()
@@ -83,6 +84,6 @@ class ProductController extends BaseController
         $filters = $_GET;
         $products = $this->repository->findAll($filters);
 
-        $this->jsonResponse($products);
+        return $this->response($products);
     }
 }

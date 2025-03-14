@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Response\Response;
+
 class IndexController extends BaseController
 {
 
-    public function index()
+    public function index(): Response
     {
-        $this->jsonResponse(['response' => 'Welcome']);
+        return $this->response(['response' => 'Welcome']);
     }
 }

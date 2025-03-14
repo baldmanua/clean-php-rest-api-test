@@ -25,4 +25,10 @@ foreach ($routes as $route) {
     }
 }
 
-$router->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+$response = $router->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+if ($response instanceof App\Response\Response) {
+    $response->outputJson();
+} else {
+    echo $response;
+}
