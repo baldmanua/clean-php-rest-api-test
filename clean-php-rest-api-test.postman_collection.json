@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "d1f0c6c8-1efa-413e-a222-022f4f480425",
+		"name": "Test Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5130866"
+	},
+	"item": [
+		{
+			"name": "get list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8001/products",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"name\": \"string\",\r\n   \"price\": 100.50,\r\n   \"category\": \"electronics\",\r\n   \"attributes\": {\r\n       \"brand\": \"Apple\",\r\n       \"color\": \"black\"\r\n   }\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8001/products",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update product",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"name\": \"string\",\r\n   \"price\": 100.50,\r\n   \"category\": \"electronics\",\r\n   \"attributes\": {\r\n       \"brand\": \"Apple\",\r\n       \"color\": \"black\"\r\n   }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8001/products/b835f39f-8e70-4b20-a1d9-eb3c785fd146",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"products",
+						"b835f39f-8e70-4b20-a1d9-eb3c785fd146"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8001/products/3d4ee315-d93e-4d95-9119-29bf867ab7ab",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"products",
+						"3d4ee315-d93e-4d95-9119-29bf867ab7ab"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8001/products/3d4ee315-d93e-4d95-9119-29bf867ab7ab",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"products",
+						"3d4ee315-d93e-4d95-9119-29bf867ab7ab"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

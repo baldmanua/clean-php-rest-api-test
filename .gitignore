@@ -1,0 +1,4 @@
+.idea
+.env
+vendor
+docker/db/postgres_data
