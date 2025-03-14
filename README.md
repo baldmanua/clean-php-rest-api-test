@@ -6,3 +6,7 @@
 
 # API
 You can use Postman collection as an example to communicate with API. The file is: `clean-php-rest-api-test.postman_collection.json`
+
+# Tests
+
+`vendor/bin/phpunit` will run tests
